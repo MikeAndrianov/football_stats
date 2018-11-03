@@ -8,8 +8,7 @@ defmodule FootballStats.Application do
   def start(_type, _args) do
     # List all child processes to be supervised
     children = [
-      # Starts a worker by calling: FootballStats.Worker.start_link(arg)
-      # {FootballStats.Worker, arg},
+      Supervisor.child_spec({FootballStats.FetchDataWorker, []}, restart: :transient)
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

@@ -28,3 +28,5 @@ use Mix.Config
 # here (which is why it is important to import them last).
 #
 #     import_config "#{Mix.env()}.exs"
+
+config :football_stats, forza_api: "http://forzaassignment.forzafootball.com:4040"
