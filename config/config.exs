@@ -30,3 +30,12 @@ use Mix.Config
 #     import_config "#{Mix.env()}.exs"
 
 config :football_stats, forza_api: "http://forzaassignment.forzafootball.com:4040"
+
+config :football_stats, ecto_repos: [FootballStats.Repo]
+
+config :football_stats, FootballStats.Repo,
+  database: "forza_football_stats_development",
+  username: "mike",
+  password: "",
+  hostname: "localhost",
+  port: "5432"
