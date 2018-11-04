@@ -1,7 +1,7 @@
 defmodule FootballStats.DataProviders.Matchbeam do
   @behaviour FootballStats.DataProvider
 
-  def fetch_matches(state) do
+  def fetch_matches(_state) do
     matches =
       Application.get_env(:football_stats, __MODULE__)[:api_url]
       |> HTTPoison.get!()

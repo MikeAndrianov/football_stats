@@ -8,5 +8,7 @@ defmodule FootballStats.Repo.Migrations.CreateMatch do
       add :created_at, :utc_datetime, null: false
       add :provider, :string, null: false
     end
+
+    create unique_index(:match, [:provider, :created_at])
   end
 end

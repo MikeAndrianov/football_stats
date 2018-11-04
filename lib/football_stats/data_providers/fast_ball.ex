@@ -2,7 +2,7 @@ defmodule FootballStats.DataProviders.FastBall do
   @behaviour FootballStats.DataProvider
 
   def fetch_matches(state) do
-    [persisted_match | matches] =
+    [_persisted_match | matches] =
       Application.get_env(:football_stats, __MODULE__)[:api_url]
       |> HTTPoison.get!([], query_params(state))
       |> Map.get(:body)
@@ -12,10 +12,10 @@ defmodule FootballStats.DataProviders.FastBall do
     {:ok, transform_records(matches), %{last_checked_at: last_checked_at(matches)}}
   end
 
-  def query_params(%{last_checked_at: last_checked_at}),
+  defp query_params(%{last_checked_at: last_checked_at}),
     do: [params: %{last_checked_at: last_checked_at}]
 
-  def query_params(_state), do: []
+  defp query_params(_state), do: []
 
   defp transform_records(matches) do
     matches

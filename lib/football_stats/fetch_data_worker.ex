@@ -1,11 +1,9 @@
 defmodule FootballStats.FetchDataWorker do
   use GenServer
-  import Ecto.Query
 
   alias FootballStats.{Match, Repo}
 
-  # @request_interval 30_000
-  @request_interval 3_000
+  @request_interval 30_000
 
   def start_link(args) do
     provider = args.provider
@@ -22,7 +20,7 @@ defmodule FootballStats.FetchDataWorker do
   def handle_info(:fetch_stats, state) do
     {:ok, matches, args} = apply(state.provider, :fetch_matches, [state])
 
-    Repo.insert_all(Match, matches)
+    Repo.insert_all(Match, matches, on_conflict: :nothing)
 
     schedule_stats_fetching()
     {:noreply, Map.put(state, :last_checked_at, args[:last_checked_at])}
