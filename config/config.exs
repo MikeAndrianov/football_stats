@@ -29,7 +29,11 @@ use Mix.Config
 #
 #     import_config "#{Mix.env()}.exs"
 
-config :football_stats, forza_api: "http://forzaassignment.forzafootball.com:4040"
+config :football_stats, FootballStats.DataProviders.Matchbeam,
+  api_url: "http://forzaassignment.forzafootball.com:4040/feed/matchbeam"
+
+config :football_stats, FootballStats.DataProviders.FastBall,
+  api_url: "http://forzaassignment.forzafootball.com:4040/feed/fastball"
 
 config :football_stats, ecto_repos: [FootballStats.Repo]
 
